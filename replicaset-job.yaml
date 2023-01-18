@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: fila-rs
+  labels:
+    app: work-queue
+    component: queue
+    chapter: jobs   
+spec:
+  # modifique o número de replicas de acordo com o seu caso
+  replicas: 1
+  selector:
+    matchLabels:
+      app: work-queue
+  template:
+    metadata:
+      labels:
+        app: work-queue
+        component: queue
+        chapter: jobs
+    spec:
+      containers:
+      - name: queue
+        image:  gcr.io/kuar-demo/kuard-amd64:blue
+        imagePullPolicy: Always

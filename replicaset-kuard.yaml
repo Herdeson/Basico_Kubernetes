@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: kuard-rs
+  labels:
+    app: kuard   
+spec:
+  # modifique o número de replicas de acordo com o seu caso
+  replicas: 2
+  selector:
+    matchLabels:
+      
+      app: kuard
+  template:
+    metadata:
+      labels:
+        app: kuard
+        version: "2"
+    spec:
+      containers:
+      - name: kuard
+        image:  gcr.io/kuar-demo/kuard-amd64:green
